@@ -12,20 +12,20 @@ app.use(morgan('dev'));
 
 app.get('/', route.getUsage);
 
-app.post('/api/auth', route.getUser);
+app.post('/api/signup', route.signup);
 
-app.get('/api/coveys', route.getAllCoveys);
+app.get('/api/auth/:userId', route.getUser);
+
+app.delete('/api/removeuser/:userId', route.removeUser);
+
+app.get('/api/coveys/:userId', route.getAllCoveys);
 
 app.post('/api/coveys', route.addCovey);
 
-app.delete('/api/coveys/:id', route.removeCovey);
+app.delete('/api/coveys/:coveyId', route.removeCovey);
 
-app.put('/api/coveys/:id', route.updateCovey);
+app.put('/api/coveys/:coveyId', route.updateCovey);
 
-app.get('/api/coveys/:id', route.getCovey);
-
-app.post('/api/signup', route.signup);
-
-app.delete('/api/removeuser', route.removeUser);
+app.get('/api/coveys/:coveyid', route.getCovey);
 
 module.exports = app;
