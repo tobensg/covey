@@ -80,7 +80,7 @@ describe('Testing user api enpoints', () => {
   let server;
   let userId;
   const newUser = JSON.stringify({ email: 'fools@me.com',
-    facebookId: 'wastedId4',
+    facebookId: 'xxXtestingIdXxx',
     firstName: 'Spider',
     lastName: 'Monkey',
     gender: 'male',
@@ -123,14 +123,15 @@ describe('Testing user api enpoints', () => {
           done(err);
         } else if (res) {
           userId = res.body.id;
+          console.log('got user: ', userId);
           done();
         }
       });
   });
 
-  it(`response to /api/removeuser/${userId} with userId should delete the user`, (done) => {
+  it(`response to /api/users/${userId} with userId should delete the user`, (done) => {
     request(server)
-      .del(`/api/removeuser/${userId}`)
+      .del(`/api/users/${userId}`)
       .type('json')
       .expect(200)
       .end((err, res) => {
